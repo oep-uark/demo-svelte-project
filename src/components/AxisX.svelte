@@ -87,7 +87,7 @@
 				/>
 			{/if}
 			<text x={halfBand} y={tickGutter + tickLen} {dx} {dy} text-anchor={textAnchor(i, snapLabels)}
-				>{format(tick)}</text
+				>{format(tick)}%</text
 			>
 		</g>
 	{/each}
@@ -101,7 +101,6 @@
 	line,
 	.tick line {
 		stroke: #d6d3d1; /* stone-300 */
-		stroke-dasharray: 2;
 	}
 
 	.tick text {

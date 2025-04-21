@@ -35,9 +35,9 @@
 	});
 </script>
 
-<div class="chart-container border-4">
+<div class="chart-container">
 	<LayerCake
-		padding={{ right: 10, bottom: 20, top: 20, left: 160 }}
+		padding={{ right: 10, bottom: 20, top: 20, left: 140 }}
 		x={xKey}
 		y={yKey}
 		yScale={scaleBand().paddingInner(0.05).round(true)}
