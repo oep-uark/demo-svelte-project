@@ -3,8 +3,5 @@
 </script>
 
 <h1 class="text-3xl text-red-500">Hello!</h1>
-<p>
-	This is some text about the visualization that we are going to show. What if I make this really
-	really long then what happens when I save.
-</p>
+<p>Middle school subjects have experienced the largest decline in retention.</p>
 <RetentionChangeChart />
