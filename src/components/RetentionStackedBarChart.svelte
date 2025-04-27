@@ -6,29 +6,31 @@
 
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
-	import DotPlot from '$components/chart_primatives/DotPlot.svelte';
+	import BarStacked from '$components/chart_primatives/BarStacked.svelte';
 
-	export let data = [];
+	import raw from '../data/stacked_bar_retention_data.csv';
+	const filtered = raw.filter((d) => d.period === 'Before COVID');
+
+	const seriesNames = Array.from(new Set(filtered.map((d) => d.variable)));
+	const seriesColors = ['#00bbff', '#8bcef6', '#c4e2ed', '#f7f6e3'];
+
+	const wideMap = new Map();
+	filtered.forEach((d) => {
+		const group = d.school_year;
+		if (!wideMap.has(group)) {
+			wideMap.set(group, { school_year: group });
+		}
+		wideMap.get(group)[d.variable] = +d.value;
+	});
+
+	const wide = Array.from(wideMap.values());
+	const stackedData = stack(wide, seriesNames);
 
 	const xKey = [0, 1];
 	const yKey = 'school_year';
-	const zKey = 'variable';
+	const zKey = 'key';
 
-	const seriesNames = Object.keys(data[0]).filter((d) => d !== yKey);
-	const seriesColors = ['#00bbff', '#8bcef6', '#c4e2ed', '#f7f6e3'];
-
-	/* --------------------------------------------
-	 * Cast data
-	 */
-	data.forEach((d) => {
-		seriesNames.forEach((name) => {
-			d[name] = +d[name];
-		});
-	});
-
-	const formatLabelX = (d) => format(`~s`)(d);
-
-	const stackedData = stack(data, seriesNames);
+	console.log('test');
 </script>
 
 <div class="chart-container">
@@ -45,7 +47,7 @@
 		data={stackedData}
 	>
 		<Svg>
-			<AxisX baseline snapLabels format={formatLabelX} />
+			<AxisX baseline snapLabels />
 			<AxisY gridlines={false} />
 			<BarStacked />
 		</Svg>

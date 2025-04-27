@@ -1,13 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { csv } from 'd3-fetch';
-
-	let data = [];
-	onMount(async () => {
-		const raw = await csv('stacked_bar_retention_data.csv');
-		data = raw.filter((d) => d.period === 'Before COVID');
-		console.log(data);
-	});
+	import { stack } from 'layercake';
 
 	import RetentionChangeChart from '$components/RetentionChangeChart.svelte';
 	import RetentionStackedBarChart from '$components/RetentionStackedBarChart.svelte';
@@ -59,7 +53,7 @@
 		<p class="mb-2 text-lg text-gray-700">
 			The retention patterns for these groups have changed since COVID:
 		</p>
-		<!-- <RetentionStackedBarChart {data} /> -->
+		<RetentionStackedBarChart />
 		<p class="mb-2 text-lg text-gray-700">
 			There is variation in teacher retention rates across districts. We can say here more about
 			this variation, and highlight a few key points.
