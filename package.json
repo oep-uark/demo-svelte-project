@@ -32,6 +32,7 @@
 		"vite": "^6.2.5"
 	},
 	"dependencies": {
+		"d3": "^7.9.0",
 		"layercake": "^8.4.3"
 	}
 }

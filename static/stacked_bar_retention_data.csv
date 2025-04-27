@@ -1,0 +1,78 @@
+school_year,period,variable,value,tooltip,label
+2014-2015,Before COVID,Stayer,0.796555569322265,79.7% teach in same school.,79.7%
+2015-2016,Before COVID,Stayer,0.788699737628897,78.9% teach in same school.,78.9%
+2016-2017,Before COVID,Stayer,0.782175180242368,78.2% teach in same school.,78.2%
+2017-2018,Before COVID,Stayer,0.792120445500262,79.2% teach in same school.,79.2%
+2018-2019,Before COVID,Stayer,0.793061099171016,79.3% teach in same school.,79.3%
+2019-2020,Before COVID,Stayer,0.804888481515429,80.5% teach in same school.,80.5%
+2020-2021,Since COVID,Stayer,0.799573820395738,80.0% teach in same school.,80.0%
+2021-2022,Since COVID,Stayer,0.772286234081261,77.2% teach in same school.,77.2%
+2022-2023,Since COVID,Stayer,0.748949986595574,74.9% teach in same school.,74.9%
+2023-2024,Since COVID,Stayer,0.766965544126908,76.7% teach in same school.,76.7%
+2024-2025,Since COVID,Stayer,0.769933327244497,77.0% teach in same school.,77.0%
+2014-2015,Before COVID,Exiter,0.0809379259075703,"4.6% exit the Arkansas education workforce. 
+ 3.5% retire from the Arkansas education workforce.",8.1%
+2015-2016,Before COVID,Exiter,0.0877112697541034,"5.6% exit the Arkansas education workforce. 
+ 3.2% retire from the Arkansas education workforce.",8.8%
+2016-2017,Before COVID,Exiter,0.0853811934345759,"5.6% exit the Arkansas education workforce. 
+ 2.9% retire from the Arkansas education workforce.",8.5%
+2017-2018,Before COVID,Exiter,0.0828679850677197,"5.5% exit the Arkansas education workforce. 
+ 2.8% retire from the Arkansas education workforce.",8.3%
+2018-2019,Before COVID,Exiter,0.0793061099171016,"5.4% exit the Arkansas education workforce. 
+ 2.6% retire from the Arkansas education workforce.",7.9%
+2019-2020,Before COVID,Exiter,0.0762908646501681,"5.1% exit the Arkansas education workforce. 
+ 2.5% retire from the Arkansas education workforce.",7.6%
+2020-2021,Since COVID,Exiter,0.0754033485540335,"4.7% exit the Arkansas education workforce. 
+ 2.8% retire from the Arkansas education workforce.",7.5%
+2021-2022,Since COVID,Exiter,0.0718010915706489,"4.7% exit the Arkansas education workforce. 
+ 2.5% retire from the Arkansas education workforce.",7.2%
+2022-2023,Since COVID,Exiter,0.0903756218164487,"6.3% exit the Arkansas education workforce. 
+ 2.7% retire from the Arkansas education workforce.",9.0%
+2023-2024,Since COVID,Exiter,0.088463729870753,"6.4% exit the Arkansas education workforce. 
+ 2.4% retire from the Arkansas education workforce.",8.8%
+2024-2025,Since COVID,Exiter,0.0923371997442689,"6.5% exit the Arkansas education workforce. 
+ 2.8% retire from the Arkansas education workforce.",9.2%
+2014-2015,Before COVID,Mover,0.0946598934456697,"5.2% move schools within district. 
+ 4.3% move schools between districts.",9.5%
+2015-2016,Before COVID,Mover,0.101836597717982,"6.0% move schools within district. 
+ 4.2% move schools between districts.",10.2%
+2016-2017,Before COVID,Mover,0.105169504525234,"5.7% move schools within district. 
+ 4.8% move schools between districts.",10.5%
+2017-2018,Before COVID,Mover,0.101224817202974,"5.4% move schools within district. 
+ 4.7% move schools between districts.",10.1%
+2018-2019,Before COVID,Mover,0.103285231808413,"5.4% move schools within district. 
+ 4.9% move schools between districts.",10.3%
+2019-2020,Before COVID,Mover,0.0947448823709135,"4.9% move schools within district. 
+ 4.6% move schools between districts.",9.5%
+2020-2021,Since COVID,Mover,0.101369863013699,"6.1% move schools within district. 
+ 4.0% move schools between districts.",10.1%
+2021-2022,Since COVID,Mover,0.116282595512432,"6.4% move schools within district. 
+ 5.3% move schools between districts.",11.6%
+2022-2023,Since COVID,Mover,0.11858449256799,"5.3% move schools within district. 
+ 6.6% move schools between districts.",11.9%
+2023-2024,Since COVID,Mover,0.108315590607851,"5.1% move schools within district. 
+ 5.7% move schools between districts.",10.8%
+2024-2025,Since COVID,Mover,0.101348677200353,"4.7% move schools within district. 
+ 5.4% move schools between districts.",10.1%
+2014-2015,Before COVID,Switcher,0.0278466113244951,"2.4% switch roles within district. 
+ 0.4% switch roles between districts.",2.8%
+2015-2016,Before COVID,Switcher,0.0217523948990176,"1.8% switch roles within district. 
+ 0.4% switch roles between districts.",2.2%
+2016-2017,Before COVID,Switcher,0.0272741217978218,"2.3% switch roles within district. 
+ 0.4% switch roles between districts.",2.7%
+2017-2018,Before COVID,Switcher,0.0237867522290439,"2.0% switch roles within district. 
+ 0.4% switch roles between districts.",2.4%
+2018-2019,Before COVID,Switcher,0.0243475591034695,"2.0% switch roles within district. 
+ 0.5% switch roles between districts.",2.4%
+2019-2020,Before COVID,Switcher,0.0240757714634892,"2.0% switch roles within district. 
+ 0.4% switch roles between districts.",2.4%
+2020-2021,Since COVID,Switcher,0.0236529680365297,"2.0% switch roles within district. 
+ 0.4% switch roles between districts.",2.4%
+2021-2022,Since COVID,Switcher,0.039630078835658,"3.0% switch roles within district. 
+ 0.9% switch roles between districts.",4.0%
+2022-2023,Since COVID,Switcher,0.0420898990199875,"3.3% switch roles within district. 
+ 0.9% switch roles between districts.",4.2%
+2023-2024,Since COVID,Switcher,0.0362551353944883,"2.7% switch roles within district. 
+ 0.9% switch roles between districts.",3.6%
+2024-2025,Since COVID,Switcher,0.0363807958108807,"2.8% switch roles within district. 
+ 0.9% switch roles between districts.",3.6%

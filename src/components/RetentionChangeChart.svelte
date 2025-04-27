@@ -4,7 +4,7 @@
 
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
-	import DotPlot from './chart_primatives/DotPlot.svelte';
+	import DotPlot from '$components/chart_primatives/DotPlot.svelte';
 
 	const data = [
 		{ subject: 'Career & Technical', pre: 76, post: 74 },
