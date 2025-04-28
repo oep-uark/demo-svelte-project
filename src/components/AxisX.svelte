@@ -81,13 +81,13 @@
 				<line
 					class="tick-mark"
 					x1={halfBand}
-					x2={halfBand}
+					x2={halfBan % d}
 					y1={tickGutter}
 					y2={tickGutter + tickLen}
 				/>
 			{/if}
 			<text x={halfBand} y={tickGutter + tickLen} {dx} {dy} text-anchor={textAnchor(i, snapLabels)}
-				>{format(tick)}%</text
+				>{format(tick)}</text
 			>
 		</g>
 	{/each}

@@ -1,6 +1,7 @@
 <script>
 	import { LayerCake, Svg } from 'layercake';
 	import { scaleLinear, scaleBand } from 'd3-scale';
+	import { format } from 'd3-format';
 
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
@@ -33,6 +34,8 @@
 			d[name] = +d[name];
 		});
 	});
+
+	const formatLabelX = (d) => d + '%';
 </script>
 
 <div class="chart-container">
@@ -46,7 +49,7 @@
 		{data}
 	>
 		<Svg>
-			<AxisX ticks={[70, 75, 80, 85]} />
+			<AxisX ticks={[70, 75, 80, 85]} format={formatLabelX} />
 			<AxisY gridlines={true} />
 			<DotPlot />
 		</Svg>
