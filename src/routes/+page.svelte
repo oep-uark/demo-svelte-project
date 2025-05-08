@@ -50,18 +50,18 @@
 				workforce entirely.
 			</li>
 		</ul>
-		<p class="mb-2 text-lg text-gray-700">
+		<p class="mb-6 text-lg text-gray-700">
 			The retention patterns for these groups have changed since COVID:
 		</p>
 		<RetentionStackedBarChart />
-		<p class="mb-2 text-lg text-gray-700">
+		<p class="mt-6 mb-2 text-lg text-gray-700">
 			There is variation in teacher retention rates across districts. We can say here more about
 			this variation, and highlight a few key points.
 		</p>
 		<div class="mb-2 flex justify-center bg-red-100 px-5 py-10">Map will go here.</div>
-		<p class="mb-2 text-lg text-gray-700">
+		<p class="mb-6 text-lg text-gray-700">
 			Middle school subjects have experienced the largest decline in retention:
 		</p>
-		<RetentionChangeChart class="my-6" />
+		<RetentionChangeChart />
 	</section>
 </article>

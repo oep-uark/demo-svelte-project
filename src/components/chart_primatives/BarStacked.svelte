@@ -1,21 +1,37 @@
+<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+<!-- svelte-ignore a11y_mouse_events_have_key_events -->
 <!--
   @component
   Generates an SVG column chart. It uses the z-scale for color assignments and aassumes both `xScale` and `zScale` are ordinal scales.  It assumes your data is in a [D3 stack format](https://github.com/d3/d3-shape#stack
  -->
 <script>
-	import { getContext } from 'svelte';
+	import { getContext, createEventDispatcher } from 'svelte';
 	import { format } from 'd3';
 
 	const { data, xGet, yGet, zGet, xScale } = getContext('LayerCake');
+
+	const dispatch = createEventDispatcher();
+	let hideTooltip = false;
+
+	// function handleMousemove(feature) {
+	// 	return function handleMousemoveFn(e) {
+	// 		raise(this);
+	// 		// When the element gets raised, it flashes 0,0 for a second so skip that
+	// 		if (e.layerX !== 0 && e.layerY !== 0) {
+	// 			dispatch('mousemove', { e });
+	// 		}
+	// 	};
+	// }
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <g class="column-group">
 	{#each $data as series, i}
 		{#each series as d}
 			{@const yVals = $yGet(d)}
 			{@const columnHeight = yVals[0] - yVals[1]}
 
-			{#if d.data.school_year !== 'SPACER'}
+			{#if d.data.school_year !== ''}
 				<rect
 					class="group-rect"
 					data-id={i}

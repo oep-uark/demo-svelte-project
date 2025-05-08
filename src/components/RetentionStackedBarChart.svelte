@@ -1,5 +1,5 @@
 <script>
-	import { LayerCake, Svg, flatten, stack } from 'layercake';
+	import { LayerCake, Svg, flatten, stack, Html } from 'layercake';
 
 	import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
 	import { format } from 'd3-format';
@@ -7,17 +7,16 @@
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
 	import BarStacked from '$components/chart_primatives/BarStacked.svelte';
+	import Annotations from '$components/AnnotationsData.html.svelte';
+	import Tooltip from '$components/Tooltip.html.svelte';
 
 	import raw from '../data/stacked_bar_retention_data.csv';
-	// const filtered = raw.filter((d) => d.period === 'Before COVID');
-	const filtered = raw;
 
-	// const seriesNames = Array.from(new Set(filtered.map((d) => d.variable)));
 	const seriesNames = ['Stayer', 'Mover', 'Switcher', 'Exiter'];
 	const seriesColors = ['#002F70', '#B4C2EB', '#EDB4B5', '#5F1415'];
 
 	const wideMap = new Map();
-	filtered.forEach((d) => {
+	raw.forEach((d) => {
 		const group = d.school_year;
 		if (!wideMap.has(group)) {
 			wideMap.set(group, { school_year: group });
@@ -37,7 +36,6 @@
 	const yKey = [0, 1];
 	const zKey = 'key';
 
-	console.log('test');
 	const formatLabelY = (d) => d + '%';
 </script>
 
@@ -47,7 +45,21 @@
 		x={(d) => d.data[xKey]}
 		y={yKey}
 		z={zKey}
-		xScale={scaleBand().paddingInner(0.02).round(true)}
+		xScale={scaleBand().paddingInner(0.05).round(true)}
+		xDomain={[
+			'2014-2015',
+			'2015-2016',
+			'2016-2017',
+			'2017-2018',
+			'2018-2019',
+			'2019-2020',
+			'',
+			'2020-2021',
+			'2021-2022',
+			'2022-2023',
+			'2023-2024',
+			'2024-2025'
+		]}
 		yScale={scaleLinear()}
 		xDomainSort={false}
 		zScale={scaleOrdinal()}
@@ -57,12 +69,6 @@
 		data={stackedData}
 	>
 		<Svg>
-			<script>
-				import { getContext } from 'svelte';
-
-				const { xScale } = getContext('LayerCake');
-			</script>
-
 			<AxisX gridlines={false} />
 			<AxisY gridlines={true} format={formatLabelY} />
 			<BarStacked />
