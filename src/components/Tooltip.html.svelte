@@ -28,7 +28,7 @@
 		width: 150px;
 		border: 1px solid #ccc;
 		font-size: 13px;
-		background: rgba(255, 255, 255, 0.85);
+		background: rgba(255, 255, 255, 0.95);
 		transform: translate(-50%, -100%);
 		padding: 5px;
 		z-index: 15;

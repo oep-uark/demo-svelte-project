@@ -65,6 +65,7 @@
 			d={geoPathFn(feature)}
 			on:mouseover={(e) => dispatch('mousemove', { e, props: feature.properties })}
 			on:mousemove={handleMousemove(feature)}
+			on:click={() => dispatch('click', feature.properties)}
 			role="tooltip"
 		></path>
 	{/each}

@@ -9,10 +9,10 @@
 	import Tooltip from '$components/Tooltip.html.svelte';
 
 	// This example loads json data as json using @rollup/plugin-json
-	import usStates from '../data/districts.json';
-	import stateData from '../data/district_flow_data.json';
+	import districts from '../data/districts.json';
+	import flowData from '../data/district_flow_data.json';
 
-	const colorKey = 'movers_in';
+	const colorKey = 'net_change';
 
 	/* --------------------------------------------
 	 * Create lookups to more easily join our data
@@ -23,13 +23,17 @@
 	const mapJoinKey = 'lea';
 	const dataLookup = new Map();
 
-	const geojson = feature(usStates, usStates.objects.PUB_SCHOOL_DISTRICTS);
+	const geojson = feature(districts, districts.objects.PUB_SCHOOL_DISTRICTS);
 	geojson.features = geojson.features.filter(
 		(f) => f.geometry && f.geometry.coordinates && f.geometry.coordinates.length > 0
 	);
 	const projection = geoIdentity;
 
-	stateData.forEach((d) => {
+	flowData.forEach((d) => {
+		d.teachers_2024 = +d.teachers_2024;
+		d.teachers_2025 = +d.teachers_2025;
+		d.net_change = d.teachers_2025 - d.teachers_2024;
+
 		dataLookup.set(d[dataJoinKey], d);
 	});
 
@@ -43,10 +47,18 @@
 	const breaks = [10, 80, 90];
 	const colors = ['red', 'blue', 'green', 'yellow'];
 
-	//const zScaleSet = scaleThreshold().domain(breaks).range(colors);
-	const zScaleSet = scaleThreshold().domain([0, 10]).range('red', 'blue', 'green');
-
 	const addCommas = format(',');
+
+	// handle the interactivity
+	let selectedDistrict = $state(null);
+	function handleDistrictClick(districtData) {
+		console.log('CLICKED');
+
+		selectedDistrict = districtData;
+	}
+	$inspect(selectedDistrict).with((type, value) => {
+		console.log('selectedDistrict changed:', value);
+	});
 </script>
 
 <div class="chart-container">
@@ -54,8 +66,8 @@
 		data={geojson}
 		z={(d) => dataLookup.get(d[mapJoinKey])[colorKey]}
 		zScale={scaleThreshold()}
-		zDomain={[2, 4, 7]}
-		zRange={['#A6B07E', '#57C787', '#32965D', '#246B43']}
+		zDomain={[-0.5, 0.5]}
+		zRange={['red', 'yellow', 'green']}
 		{flatData}
 	>
 		<Svg>
@@ -63,6 +75,7 @@
 				{projection}
 				on:mousemove={(event) => (evt = hideTooltip = event)}
 				on:mouseout={() => (hideTooltip = true)}
+				on:click={(e) => handleDistrictClick(e.detail)}
 			/>
 		</Svg>
 
@@ -71,17 +84,33 @@
 				<Tooltip {evt} let:detail>
 					<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
 					{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}
-					<div>{tooltipData.movers_in}</div>
+					{@const districtName = tooltipData['District Name'].replace(' School District', '')}
+					{#if tooltipData.net_change > 0}
+						<div>
+							{districtName}
+							gained <b>{tooltipData.net_change}</b> teachers in 2025.
+						</div>
+					{:else if tooltipData.net_change < 0}
+						<div>
+							{districtName}
+							lost <b>{-1 * tooltipData.net_change}</b> out of {tooltipData.teachers_2024} teachers in
+							2025.
+						</div>
+					{:else}
+						<div>
+							{districtName} had the <b>same number</b> of teachers in 2024 as in 20205.
+						</div>
+					{/if}
 
-					{#each Object.entries(tooltipData) as [key, value]}
-						{#if key == 'movers_in'}
+					<!-- {#each Object.entries(tooltipData) as [key, value]}
+						{#if key != 'movers_in'}
 							{@const keyCapitalized = key.replace(/^\w/, (d) => d.toUpperCase())}
 							<div class="row">
 								<span>{keyCapitalized}:</span>
 								{typeof value === 'number' ? addCommas(value) : value}
 							</div>
 						{/if}
-					{/each}
+					{/each} -->
 				</Tooltip>
 			{/if}
 		</Html>
