@@ -14,9 +14,9 @@
 	<div
 		class="tooltip"
 		style="
-        top:{evt.detail.e.layerY + offset}px;
-        left:{evt.detail.e.layerX}px;
-      "
+		top:{evt.detail.e.layerY + offset}px;
+		left:{evt.detail.e.layerX}px;
+	  "
 	>
 		<slot detail={evt.detail}></slot>
 	</div>
