@@ -5,7 +5,7 @@
 	import { scaleThreshold, scaleOrdinal } from 'd3-scale';
 	import { format } from 'd3-format';
 
-	import MapSvg from '$components/chart_primatives/Map.svg.svelte';
+	import MapInteractiveSvg from '$components/chart_primatives/MapInteractive.svg.svelte';
 	import Tooltip from '$components/Tooltip.html.svelte';
 
 	// This example loads json data as json using @rollup/plugin-json
@@ -68,8 +68,9 @@
 		{flatData}
 	>
 		<Svg>
-			<MapSvg
+			<MapInteractiveSvg
 				{projection}
+				{selectedDistrict}
 				on:mousemove={(event) => (evt = hideTooltip = event)}
 				on:mouseout={() => (hideTooltip = true)}
 				on:click={(e) => handleDistrictClick(e.detail)}
@@ -95,7 +96,7 @@
 						</div>
 					{:else}
 						<div>
-							{districtName} had the <b>same number</b> of teachers in 2024 as in 20205.
+							{districtName} had the <b>same number</b> of teachers in 2024 as in 2025.
 						</div>
 					{/if}
 

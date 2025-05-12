@@ -1,7 +1,10 @@
 <!--
   @component
   Generates an SVG map using the `geoPath` function from [d3-geo](https://github.com/d3/d3-geo).
- -->
+  Forked from LayerCake's MapSvg component: https://layercake.graphics/example/MapSvg. 
+  Modified to support district selection highlighting
+-->
+
 <script>
 	import { getContext, createEventDispatcher } from 'svelte';
 	import { geoPath } from 'd3-geo';
@@ -26,6 +29,8 @@
 
 	/** @type {Array<Object>|undefined} [features] - A list of GeoJSON features. Use this if you want to draw a subset of the features in `$data` while keeping the zoom on the whole GeoJSON feature set. By default, it plots everything in `$data.features` if left unset. */
 	export let features = undefined;
+
+	export let selectedDistrict = null;
 
 	/* --------------------------------------------
 	 * Here's how you would do cross-component hovers
@@ -69,7 +74,29 @@
 			role="tooltip"
 		></path>
 	{/each}
+
+	<!-- {#if selectedDistrict}
+		<path
+			class="feature-path selected"
+			fill={fill || $zGet(selectedDistrict)}
+			stroke="#000"
+			stroke-width="10"
+			d={geoPathFn($data.features.find((f) => f.properties.lea === selectedDistrict.lea))}
+		/>
+	{/if} -->
 </g>
+
+{#if selectedDistrict}
+	<g pointer-events="none">
+		<path
+			class="feature-path selected"
+			fill={fill || $zGet(selectedDistrict)}
+			stroke="#000"
+			stroke-width="2"
+			d={geoPathFn($data.features.find((f) => f.properties.lea === selectedDistrict.lea))}
+		/>
+	</g>
+{/if}
 
 <style>
 	/* .feature-path {
@@ -89,5 +116,26 @@
      */
 	.feature-path:focus {
 		outline: none;
+	}
+
+	.feature-path.selected {
+		stroke: #000;
+		stroke-width: 2;
+		animation: pulse-stroke 1.5s ease-in-out infinite;
+	}
+
+	@keyframes pulse-stroke {
+		0% {
+			stroke-width: 2;
+			opacity: 1;
+		}
+		50% {
+			stroke-width: 4;
+			opacity: 0.8;
+		}
+		100% {
+			stroke-width: 2;
+			opacity: 1;
+		}
 	}
 </style>
