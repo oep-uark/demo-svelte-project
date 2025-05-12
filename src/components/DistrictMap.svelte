@@ -81,6 +81,7 @@
 				<MapInteractiveSvg
 					{projection}
 					{selectedDistrict}
+					stroke="#020617"
 					on:mousemove={(event) => (evt = hideTooltip = event)}
 					on:mouseout={() => (hideTooltip = true)}
 					on:click={(e) => handleDistrictClick(e.detail)}
@@ -194,7 +195,7 @@
 				]}
 			/>
 		{:else}
-			<p class="text-gray-500 italic">Select a district to see the details.</p>
+			<p class="text-gray-500 italic">Select a district to see its details.</p>
 		{/if}
 	</div>
 </div>
