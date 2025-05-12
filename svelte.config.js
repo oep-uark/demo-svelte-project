@@ -9,7 +9,7 @@ const config = {
 		adapter: adapter({
 		}),
 		paths: {
-			base: '/svelte-proof-of-concept',
+			base: '/demo-svelte-project',
 		},
 		alias: {
 			$components: "src/components",
