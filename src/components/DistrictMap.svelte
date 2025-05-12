@@ -37,8 +37,8 @@
 		dataLookup.set(d[dataJoinKey], d);
 	});
 
-	let evt;
-	let hideTooltip = true;
+	let evt = $state(null);
+	let hideTooltip = $state(true);
 
 	// Create a flat array of objects that LayerCake can use to measure
 	// extents for the color scale
