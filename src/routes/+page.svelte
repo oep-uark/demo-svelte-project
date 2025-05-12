@@ -55,7 +55,7 @@
 			The retention patterns for these groups have changed since COVID:
 		</p>
 		<RetentionStackedBarChart />
-		<p class="mt-6 mb-6 text-lg text-gray-700">
+		<p class="mt-10 mb-6 text-lg text-gray-700">
 			There is variation in teacher retention rates across districts. We can say here more about
 			this variation, and highlight a few key points.
 		</p>

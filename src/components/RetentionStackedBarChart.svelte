@@ -7,7 +7,7 @@
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
 	import BarStacked from '$components/chart_primatives/BarStacked.svelte';
-	import Annotations from '$components/AnnotationsData.html.svelte';
+	import Annotations from '$components/AnnotationsDataStacked.html.svelte';
 	import Tooltip from '$components/Tooltip.html.svelte';
 
 	import raw from '../data/stacked_bar_retention_data.csv';
@@ -37,6 +37,21 @@
 	const zKey = 'key';
 
 	const formatLabelY = (d) => d + '%';
+
+	const annotations = [
+		{
+			text: 'Before COVID',
+			dx: 10,
+			dy: 12,
+			data: { school_year: '2016-2017' }
+		},
+		{
+			text: 'After COVID',
+			dx: -15,
+			dy: 12,
+			data: { school_year: '2022-2023' }
+		}
+	];
 </script>
 
 <div class="chart-container">
@@ -73,6 +88,10 @@
 			<AxisY gridlines={true} format={formatLabelY} />
 			<BarStacked />
 		</Svg>
+
+		<Html>
+			<Annotations {annotations} />
+		</Html>
 	</LayerCake>
 </div>
 
