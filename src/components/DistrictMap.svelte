@@ -54,14 +54,20 @@
 	let selectedDistrict = $state(null);
 	function handleDistrictClick(districtData) {
 		console.log('CLICKED');
-
-		selectedDistrict = districtData;
+		// merges on the actual data again since it's not available from the click event
+		selectedDistrict = {
+			...districtData,
+			...dataLookup.get(districtData[mapJoinKey])
+		};
 	}
 	$inspect(selectedDistrict).with((type, value) => {
 		console.log('selectedDistrict changed:', value);
 	});
 </script>
 
+<div class="mb-6">
+	Selected district: {selectedDistrict?.name ?? 'No district selected.'}
+</div>
 <div class="chart-container">
 	<LayerCake
 		data={geojson}
