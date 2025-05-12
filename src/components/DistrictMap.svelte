@@ -98,32 +98,6 @@
 							{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from 2024
 							to 2025.
 						</div>
-						<!-- {#if tooltipData.net_change > 0}
-						<div>
-							{districtName}
-							gained <b>{tooltipData.net_change}</b> teachers in 2025.
-						</div>
-					{:else if tooltipData.net_change < 0}
-						<div>
-							{districtName}
-							lost <b>{-1 * tooltipData.net_change}</b> out of {tooltipData.teachers_2024} teachers in
-							2025.
-						</div>
-					{:else}
-						<div>
-							{districtName} had the <b>same number</b> of teachers in 2024 as in 2025.
-						</div>
-					{/if} -->
-
-						<!-- {#each Object.entries(tooltipData) as [key, value]}
-						{#if key != 'movers_in'}
-							{@const keyCapitalized = key.replace(/^\w/, (d) => d.toUpperCase())}
-							<div class="row">
-								<span>{keyCapitalized}:</span>
-								{typeof value === 'number' ? addCommas(value) : value}
-							</div>
-						{/if}
-					{/each} -->
 					</Tooltip>
 				{/if}
 			</Html>

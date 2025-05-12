@@ -18,28 +18,10 @@
 	export let pr = $percentRange;
 
 	$: units = pr === true ? '%' : 'px';
-
-	$: {
-		annotations.forEach((a) => {
-			console.log('yGet', $yGet(a));
-		});
-	}
 </script>
 
 <div class="layercake-annotations">
 	{#each annotations as d, i}
-		<!-- style:left={`calc(${$xGet(d)})`} -->
-		{console.log($yGet(d))}
-		<!-- <div class="layercake-annotation" data-id={i}>
-			{getText(d)}
-		</div> -->
-		<!-- <div
-			class="layercake-annotation"
-			data-id={i}
-			style:left={`calc(${$xGet(d)}${units} + ${d.dx || 0}px)`}
-			style:top={0.5}
-		> -->
-		<!-- style:top={`calc(${$yGet(d)}${units} + ${d.dy || 0}px)`} -->
 		<div
 			class="layercake-annotation"
 			data-id={i}

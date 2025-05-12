@@ -30,6 +30,8 @@
 		school_year: ''
 	});
 
+	console.log(wide);
+
 	const stackedData = stack(wide, seriesNames);
 
 	const xKey = 'school_year';
@@ -52,6 +54,9 @@
 			data: { school_year: '2022-2023' }
 		}
 	];
+
+	let evt;
+	let hideTooltip = false;
 </script>
 
 <div class="chart-container">
@@ -86,10 +91,39 @@
 		<Svg>
 			<AxisX gridlines={false} />
 			<AxisY gridlines={true} format={formatLabelY} />
-			<BarStacked />
+			<BarStacked
+				on:mousemove={(event) => (evt = hideTooltip = event)}
+				on:mouseout={() => (hideTooltip = true)}
+			/>
 		</Svg>
 
-		<Html>
+		<Html pointerEvents={false}>
+			{#if hideTooltip !== true}
+				<Tooltip {evt} let:detail>
+					{@const tooltipData = { ...detail.props }}
+					{@const datum = detail.props}
+					{@const year = datum.data.school_year}
+					{@const variable = datum.key}
+
+					{@const match = raw.find((r) => r.school_year === year && r.variable === variable)}
+					{@const tooltipLines = match?.tooltip?.split('\n') || []}
+
+					<div>
+						<div class="font-semibold">
+							{variable} <span class="text-gray-500">({year})</span>
+						</div>
+
+						<ul class="list-inside list-disc text-gray-800">
+							{#each tooltipLines as line}
+								<li>{line.trim()}</li>
+							{/each}
+						</ul>
+					</div>
+				</Tooltip>
+			{/if}
+		</Html>
+
+		<Html pointerEvents={false}>
 			<Annotations {annotations} />
 		</Html>
 	</LayerCake>

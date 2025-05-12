@@ -13,19 +13,23 @@
 	const dispatch = createEventDispatcher();
 	let hideTooltip = false;
 
-	// function handleMousemove(feature) {
-	// 	return function handleMousemoveFn(e) {
-	// 		raise(this);
-	// 		// When the element gets raised, it flashes 0,0 for a second so skip that
-	// 		if (e.layerX !== 0 && e.layerY !== 0) {
-	// 			dispatch('mousemove', { e });
-	// 		}
-	// 	};
-	// }
+	function handleMousemove(feature) {
+		return function handleMousemoveFn(e) {
+			raise(this);
+			// When the element gets raised, it flashes 0,0 for a second so skip that
+			if (e.layerX !== 0 && e.layerY !== 0) {
+				dispatch('mousemove', { e });
+			}
+		};
+	}
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<g class="column-group">
+<g
+	class="column-group"
+	on:mouseout={(e) => dispatch('mouseout')}
+	on:blur={(e) => dispatch('mouseout')}
+>
 	{#each $data as series, i}
 		{#each series as d}
 			{@const yVals = $yGet(d)}
@@ -40,6 +44,12 @@
 					width={$xScale.bandwidth()}
 					height={columnHeight}
 					fill={$zGet(series)}
+					on:mouseover={(e) => {
+						dispatch('mousemove', { e, props: { ...d, key: series.key } });
+					}}
+					on:focus={(e) => dispatch('mousemove', { e, props: { ...d, key: series.key } })}
+					on:mousemove={(e) => handleMousemove(e, { ...d, key: series.key })}
+					role="tooltip"
 				></rect>
 
 				<text
@@ -49,6 +59,7 @@
 					dominant-baseline="middle"
 					font-size="10"
 					fill="white"
+					style="pointer-events: none"
 				>
 					{format('.1f')(d.data[series.key])}%
 				</text>

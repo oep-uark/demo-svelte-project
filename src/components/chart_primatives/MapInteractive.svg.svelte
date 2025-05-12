@@ -76,16 +76,6 @@
 			role="tooltip"
 		></path>
 	{/each}
-
-	<!-- {#if selectedDistrict}
-		<path
-			class="feature-path selected"
-			fill={fill || $zGet(selectedDistrict)}
-			stroke="#000"
-			stroke-width="10"
-			d={geoPathFn($data.features.find((f) => f.properties.lea === selectedDistrict.lea))}
-		/>
-	{/if} -->
 </g>
 
 {#if selectedDistrict}
