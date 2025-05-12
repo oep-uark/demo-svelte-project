@@ -12,7 +12,7 @@
 	import districts from '../data/districts.json';
 	import flowData from '../data/district_flow_data.json';
 
-	const colorKey = 'net_change';
+	const colorKey = 'retention_rate';
 
 	/* --------------------------------------------
 	 * Create lookups to more easily join our data
@@ -30,9 +30,12 @@
 	const projection = geoIdentity;
 
 	flowData.forEach((d) => {
+		d.stayers = +d.stayers;
 		d.teachers_2024 = +d.teachers_2024;
 		d.teachers_2025 = +d.teachers_2025;
 		d.net_change = d.teachers_2025 - d.teachers_2024;
+
+		d.retention_rate = d.stayers / d.teachers_2024;
 
 		dataLookup.set(d[dataJoinKey], d);
 	});
@@ -45,6 +48,7 @@
 	const flatData = geojson.features.map((d) => d.properties);
 
 	const addCommas = format(',');
+	const formatPercent = format('.1%');
 
 	// handle the interactivity
 	let selectedDistrict = $state(null);
@@ -63,8 +67,8 @@
 		data={geojson}
 		z={(d) => dataLookup.get(d[mapJoinKey])[colorKey]}
 		zScale={scaleThreshold()}
-		zDomain={[-0.5, 0.5]}
-		zRange={['red', 'yellow', 'green']}
+		zDomain={[0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}
+		zRange={['#FFDF43', '#84D24C', '#00B675', '#00908A', '#016587', '#2C376E', '#460049']}
 		{flatData}
 	>
 		<Svg>
@@ -83,7 +87,11 @@
 					<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
 					{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}
 					{@const districtName = tooltipData['District Name'].replace(' School District', '')}
-					{#if tooltipData.net_change > 0}
+					<div>
+						{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from 2024
+						to 2025.
+					</div>
+					<!-- {#if tooltipData.net_change > 0}
 						<div>
 							{districtName}
 							gained <b>{tooltipData.net_change}</b> teachers in 2025.
@@ -98,7 +106,7 @@
 						<div>
 							{districtName} had the <b>same number</b> of teachers in 2024 as in 2025.
 						</div>
-					{/if}
+					{/if} -->
 
 					<!-- {#each Object.entries(tooltipData) as [key, value]}
 						{#if key != 'movers_in'}

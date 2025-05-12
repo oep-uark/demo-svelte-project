@@ -119,7 +119,7 @@
 	}
 
 	.feature-path.selected {
-		stroke: #000;
+		stroke: #f00707;
 		stroke-width: 2;
 		animation: pulse-stroke 1.5s ease-in-out infinite;
 	}
