@@ -44,13 +44,14 @@
 		{
 			text: 'Before COVID',
 			dx: 10,
-			dy: 12,
+			dy: -590,
+			// dy: 12,
 			data: { school_year: '2016-2017' }
 		},
 		{
 			text: 'After COVID',
 			dx: -15,
-			dy: 12,
+			dy: -590,
 			data: { school_year: '2022-2023' }
 		}
 	];
@@ -61,7 +62,7 @@
 
 <div class="chart-container">
 	<LayerCake
-		padding={{ top: 0, right: 0, bottom: 20, left: 20 }}
+		padding={{ top: 20, right: 0, bottom: 20, left: 20 }}
 		x={(d) => d.data[xKey]}
 		y={yKey}
 		z={zKey}
@@ -127,6 +128,15 @@
 			<Annotations {annotations} />
 		</Html>
 	</LayerCake>
+</div>
+<div class="mt-2 flex flex-wrap items-center justify-center gap-4 text-sm text-gray-800">
+	{#each seriesNames as name, i}
+		<div class="flex items-center gap-1">
+			<span class="inline-block h-4 w-4 rounded-sm" style="background-color: {seriesColors[i]}"
+			></span>
+			<span>{name}</span>
+		</div>
+	{/each}
 </div>
 
 <style>

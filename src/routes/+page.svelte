@@ -35,15 +35,15 @@
 		</h3>
 		<ul class="mb-2 list-outside list-disc space-y-1 pl-6 text-lg text-gray-700">
 			<li>
-				<span class="font-bold text-red-800">Stayers</span>
+				<span class="font-bold text-[#002F70]">Stayers</span>
 				are teachers who remain teaching in the same school(s) from one year to the next.
 			</li>
 			<li>
-				<span class="font-bold text-red-800">Movers</span> leave their current school(s) to teach in
+				<span class="font-bold text-[#B4C2EB]">Movers</span> leave their current school(s) to teach in
 				another school or district.
 			</li>
 			<li>
-				<span class="font-bold text-red-800">Switchers</span> change from a teaching to a non-teaching
+				<span class="font-bold text-[#EDB4B5]">Switchers</span> change from a teaching to a non-teaching
 				role in the Arkansas education workforce from one year to the next.
 			</li>
 			<li>
@@ -51,13 +51,15 @@
 				workforce entirely.
 			</li>
 		</ul>
-		<p class="mb-6 text-lg text-gray-700">
+		<p class="mb-8 text-lg text-gray-700">
 			The retention patterns for these groups have changed since COVID:
 		</p>
 		<RetentionStackedBarChart />
-		<p class="mt-10 mb-6 text-lg text-gray-700">
-			There is variation in teacher retention rates across districts. We can say here more about
-			this variation, and highlight a few key points.
+		<p class="mt-6 mb-6 text-lg text-gray-700">
+			There is variation in teacher retention rates across districts. Many of the districts with the
+			lowest retention rates are located in South and East Arkansas, but districts across the state
+			have varying levels of retention. Click on each district below to explore its retention
+			patterns:
 		</p>
 		<DistrictMap />
 		<p class="mt-6 mb-6 text-lg text-gray-700">
