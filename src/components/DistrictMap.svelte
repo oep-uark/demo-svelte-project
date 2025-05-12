@@ -72,6 +72,7 @@
 				{projection}
 				on:mousemove={(event) => (evt = hideTooltip = event)}
 				on:mouseout={() => (hideTooltip = true)}
+				on:click={(e) => handleDistrictClick(e.detail)}
 			/>
 		</Svg>
 
