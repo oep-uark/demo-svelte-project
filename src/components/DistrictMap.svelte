@@ -44,9 +44,6 @@
 	// extents for the color scale
 	const flatData = geojson.features.map((d) => d.properties);
 
-	const breaks = [10, 80, 90];
-	const colors = ['red', 'blue', 'green', 'yellow'];
-
 	const addCommas = format(',');
 
 	// handle the interactivity
