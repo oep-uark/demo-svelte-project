@@ -65,39 +65,37 @@
 	});
 </script>
 
-<div class="mb-6">
-	Selected district: {selectedDistrict?.name ?? 'No district selected.'}
-</div>
-<div class="chart-container">
-	<LayerCake
-		data={geojson}
-		z={(d) => dataLookup.get(d[mapJoinKey])[colorKey]}
-		zScale={scaleThreshold()}
-		zDomain={[0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}
-		zRange={['#FFDF43', '#84D24C', '#00B675', '#00908A', '#016587', '#2C376E', '#460049']}
-		{flatData}
-	>
-		<Svg>
-			<MapInteractiveSvg
-				{projection}
-				{selectedDistrict}
-				on:mousemove={(event) => (evt = hideTooltip = event)}
-				on:mouseout={() => (hideTooltip = true)}
-				on:click={(e) => handleDistrictClick(e.detail)}
-			/>
-		</Svg>
+<div class="flex flex-col gap-4 md:flex-row">
+	<div class="chart-container flex-1">
+		<LayerCake
+			data={geojson}
+			z={(d) => dataLookup.get(d[mapJoinKey])[colorKey]}
+			zScale={scaleThreshold()}
+			zDomain={[0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}
+			zRange={['#FFDF43', '#84D24C', '#00B675', '#00908A', '#016587', '#2C376E', '#460049']}
+			{flatData}
+		>
+			<Svg>
+				<MapInteractiveSvg
+					{projection}
+					{selectedDistrict}
+					on:mousemove={(event) => (evt = hideTooltip = event)}
+					on:mouseout={() => (hideTooltip = true)}
+					on:click={(e) => handleDistrictClick(e.detail)}
+				/>
+			</Svg>
 
-		<Html pointerEvents={false}>
-			{#if hideTooltip !== true}
-				<Tooltip {evt} let:detail>
-					<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
-					{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}
-					{@const districtName = tooltipData['District Name'].replace(' School District', '')}
-					<div>
-						{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from 2024
-						to 2025.
-					</div>
-					<!-- {#if tooltipData.net_change > 0}
+			<Html pointerEvents={false}>
+				{#if hideTooltip !== true}
+					<Tooltip {evt} let:detail>
+						<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
+						{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}
+						{@const districtName = tooltipData['District Name'].replace(' School District', '')}
+						<div>
+							{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from 2024
+							to 2025.
+						</div>
+						<!-- {#if tooltipData.net_change > 0}
 						<div>
 							{districtName}
 							gained <b>{tooltipData.net_change}</b> teachers in 2025.
@@ -114,7 +112,7 @@
 						</div>
 					{/if} -->
 
-					<!-- {#each Object.entries(tooltipData) as [key, value]}
+						<!-- {#each Object.entries(tooltipData) as [key, value]}
 						{#if key != 'movers_in'}
 							{@const keyCapitalized = key.replace(/^\w/, (d) => d.toUpperCase())}
 							<div class="row">
@@ -123,10 +121,55 @@
 							</div>
 						{/if}
 					{/each} -->
-				</Tooltip>
-			{/if}
-		</Html>
-	</LayerCake>
+					</Tooltip>
+				{/if}
+			</Html>
+		</LayerCake>
+	</div>
+
+	<div class="min-h-[240px] w-full rounded p-4 md:w-80">
+		{#if selectedDistrict}
+			<h2 class="text-lg font-semibold">
+				{selectedDistrict?.['District Name']?.replace(' School District', '')}
+			</h2>
+			<p class="mt-2">
+				<strong>Teachers 2024:</strong>
+				{addCommas(selectedDistrict?.teachers_2024)}
+			</p>
+			<p><strong>Teachers 2025:</strong> {addCommas(selectedDistrict?.teachers_2025)}</p>
+			<p>
+				<strong>Net Change:</strong>
+				{#if selectedDistrict?.net_change > 0}
+					<span class="text-green-600">+{selectedDistrict.net_change}</span>
+				{:else if selectedDistrict?.net_change < 0}
+					<span class="text-red-600">{selectedDistrict.net_change}</span>
+				{:else}
+					<span class="text-gray-600">0</span>
+				{/if}
+			</p>
+
+			<p class="mt-2 text-sm leading-relaxed text-gray-800">
+				Out of <span class="font-semibold text-gray-900"
+					>{addCommas(selectedDistrict?.teachers_2024)}</span
+				>
+				teachers in 2024,
+				<span class="font-semibold text-green-600">{addCommas(selectedDistrict?.stayers)}</span>
+				stayed for 2025, a retention rate of
+				<span class="font-semibold text-green-700"
+					>{formatPercent(selectedDistrict?.retention_rate)}</span
+				>. Of the remainder,
+				<span class="font-semibold text-blue-600">{addCommas(selectedDistrict?.movers_out)}</span>
+				moved to other schools,
+				<span class="font-semibold text-yellow-600">{addCommas(selectedDistrict?.switchers)}</span>
+				switched to non-teaching roles, and
+				<span class="font-semibold text-red-600"
+					>{addCommas(selectedDistrict?.exiters + selectedDistrict?.retirements)}</span
+				> exited the teaching workforce.
+			</p>
+		{:else}
+			<p class="text-gray-500 italic">Select a district to see the details.</p>
+		{/if}
+	</div>
 </div>
 
 <style>
