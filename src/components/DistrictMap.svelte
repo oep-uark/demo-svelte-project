@@ -7,6 +7,7 @@
 
 	import MapInteractiveSvg from '$components/chart_primatives/MapInteractive.svg.svelte';
 	import Tooltip from '$components/Tooltip.html.svelte';
+	import WaffleCircleChart from '$components/WaffleCircleChart.svelte';
 
 	// This example loads json data as json using @rollup/plugin-json
 	import districts from '../data/districts.json';
@@ -157,15 +158,33 @@
 				stayed for 2025, a retention rate of
 				<span class="font-semibold text-green-700"
 					>{formatPercent(selectedDistrict?.retention_rate)}</span
-				>. Of the remainder,
-				<span class="font-semibold text-blue-600">{addCommas(selectedDistrict?.movers_out)}</span>
-				moved to other schools,
-				<span class="font-semibold text-yellow-600">{addCommas(selectedDistrict?.switchers)}</span>
-				switched to non-teaching roles, and
-				<span class="font-semibold text-red-600"
-					>{addCommas(selectedDistrict?.exiters + selectedDistrict?.retirements)}</span
-				> exited the teaching workforce.
+				>. Of the remainder:
 			</p>
+			<ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+				<li class="font-semibold text-blue-600">
+					{addCommas(selectedDistrict?.movers_out)} moved to other schools
+				</li>
+				<li class="font-semibold text-yellow-600">
+					{addCommas(selectedDistrict?.switchers)} switched to non-teaching roles
+				</li>
+				<li class="font-semibold text-red-600">
+					{addCommas(+selectedDistrict?.exiters + +selectedDistrict?.retirements)} exited the teaching
+					workforce
+				</li>
+			</ul>
+
+			<WaffleCircleChart
+				data={[
+					{ label: 'Stayers', count: selectedDistrict?.stayers ?? 0, color: '#16a34a' },
+					{ label: 'Movers Out', count: selectedDistrict?.movers_out ?? 0, color: '#2563eb' },
+					{ label: 'Switchers', count: selectedDistrict?.switchers ?? 0, color: '#eab308' },
+					{
+						label: 'Exiters',
+						count: (+selectedDistrict?.exiters ?? 0) + (+selectedDistrict?.retirements ?? 0),
+						color: '#dc2626'
+					}
+				]}
+			/>
 		{:else}
 			<p class="text-gray-500 italic">Select a district to see the details.</p>
 		{/if}
