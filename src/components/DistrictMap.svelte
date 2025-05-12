@@ -50,6 +50,7 @@
 
 	const addCommas = format(',');
 	const formatPercent = format('.1%');
+	const formatRoundPercent = format('.0%');
 
 	// handle the interactivity
 	let selectedDistrict = $state(null);
@@ -128,7 +129,7 @@
 		</LayerCake>
 	</div>
 
-	<div class="min-h-[240px] w-full rounded p-4 md:w-80">
+	<div class="max-h-[400px] min-h-[240px] w-full rounded p-4 md:w-80">
 		{#if selectedDistrict}
 			<h2 class="text-lg font-semibold">
 				{selectedDistrict?.['District Name']?.replace(' School District', '')}
@@ -160,16 +161,23 @@
 					>{formatPercent(selectedDistrict?.retention_rate)}</span
 				>. Of the remainder:
 			</p>
-			<ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+			<ul class="mt-2 mb-4 list-inside list-disc space-y-1 text-sm">
 				<li class="font-semibold text-blue-600">
-					{addCommas(selectedDistrict?.movers_out)} moved to other schools
+					{addCommas(selectedDistrict?.movers_out)} ({formatRoundPercent(
+						+selectedDistrict?.movers_out / +selectedDistrict?.teachers_2024
+					)}) moved to other schools
 				</li>
 				<li class="font-semibold text-yellow-600">
-					{addCommas(selectedDistrict?.switchers)} switched to non-teaching roles
+					{addCommas(selectedDistrict?.switchers)}
+					({formatRoundPercent(+selectedDistrict?.switchers / +selectedDistrict?.teachers_2024)})
+					switched to non-teaching roles
 				</li>
 				<li class="font-semibold text-red-600">
-					{addCommas(+selectedDistrict?.exiters + +selectedDistrict?.retirements)} exited the teaching
-					workforce
+					{addCommas(+selectedDistrict?.exiters + +selectedDistrict?.retirements)}
+					({formatRoundPercent(
+						(+selectedDistrict?.exiters + +selectedDistrict?.retirements) /
+							+selectedDistrict?.teachers_2024
+					)}) exited the teaching workforce
 				</li>
 			</ul>
 
