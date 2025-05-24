@@ -7,6 +7,7 @@
 
 	import MultiLine from '$components/chart_primatives/MultiLine.svelte';
 	import SharedTooltip from '$components/chart_primatives/SharedTooltip.html.svelte';
+	import Annotations from '$components/chart_primatives/AnnotationsData.html.svelte';
 
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
@@ -46,7 +47,15 @@
 		groupTo: zKey,
 		valueTo: yKey
 	});
-	console.log(groupedData);
+
+	const annotations = [
+		// {
+		// 	text: 'Retirements were 2.8% in 2024-25',
+		// 	[xKey]: '2022-23',
+		// 	[yKey]: 2,
+		// 	dx: 30
+		// }
+	];
 </script>
 
 <div class="chart-container">
@@ -84,6 +93,7 @@
 
 		<Html>
 			<!-- <Labels /> -->
+			<Annotations {annotations} />
 			<SharedTooltip
 				formatTitle={formatLabelX}
 				formatKey={formatTooltipKey}
