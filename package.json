@@ -10,7 +10,7 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"deploy": "npm run build && npx gh-pages -d build -r oep_prod"
+		"deploy": "npm run build && npx gh-pages -d build -r oep_prod --repo=https://github.com/oep-uark/demo-svelte-project.git"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",

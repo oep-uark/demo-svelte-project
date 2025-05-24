@@ -26,7 +26,7 @@
 
 	const wide = Array.from(wideMap.values());
 
-	wide.splice(wide.findIndex((d) => d.school_year === '2019-2020') + 1, 0, {
+	wide.splice(wide.findIndex((d) => d.school_year === '2019-20') + 1, 0, {
 		school_year: ''
 	});
 
@@ -46,13 +46,13 @@
 			dx: 10,
 			dy: -590,
 			// dy: 12,
-			data: { school_year: '2016-2017' }
+			data: { school_year: '2016-17' }
 		},
 		{
 			text: 'After COVID',
 			dx: -15,
 			dy: -590,
-			data: { school_year: '2022-2023' }
+			data: { school_year: '2022-23' }
 		}
 	];
 
@@ -68,18 +68,18 @@
 		z={zKey}
 		xScale={scaleBand().paddingInner(0.05).round(true)}
 		xDomain={[
-			'2014-2015',
-			'2015-2016',
-			'2016-2017',
-			'2017-2018',
-			'2018-2019',
-			'2019-2020',
+			'2014-15',
+			'2015-16',
+			'2016-17',
+			'2017-18',
+			'2018-19',
+			'2019-20',
 			'',
-			'2020-2021',
-			'2021-2022',
-			'2022-2023',
-			'2023-2024',
-			'2024-2025'
+			'2020-21',
+			'2021-22',
+			'2022-23',
+			'2023-24',
+			'2024-25'
 		]}
 		yScale={scaleLinear()}
 		xDomainSort={false}

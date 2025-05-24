@@ -132,7 +132,7 @@
 				teachers in 2024,
 				<span class="font-semibold text-green-600">{addCommas(selectedDistrict?.stayers)}</span>
 				stayed for 2025, a retention rate of
-				<span class="font-semibold text-green-700"
+				<span class="font-semibold text-green-600"
 					>{formatPercent(selectedDistrict?.retention_rate)}</span
 				>. Of the remainder:
 			</p>
