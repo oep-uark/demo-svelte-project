@@ -6,6 +6,8 @@
 	import { format } from 'd3-format';
 
 	import MultiLine from '$components/chart_primatives/MultiLine.svelte';
+	import SharedTooltip from '$components/chart_primatives/SharedTooltip.html.svelte';
+
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
 
@@ -32,9 +34,13 @@
 	});
 
 	const formatLabelX = (d) => d;
-
-	// const formatLabelX = timeFormat('%b. %e');
-	// const formatLabelY = (d) => format(`~s`)(d);
+	const formatTooltipKey = (d) => {
+		if (d === 'exit') return 'Exit rate';
+		if (d === 'retire') return 'Retirement rate';
+		return d;
+	};
+	const formatTooltipValue = (d) => d + '%';
+	const formatLabelY = (d) => d + '%';
 
 	const groupedData = groupLonger(data, seriesNames, {
 		groupTo: zKey,
@@ -72,14 +78,19 @@
 	>
 		<Svg>
 			<AxisX gridlines={false} tickMarks />
-			<AxisY ticks={4} />
+			<AxisY ticks={4} format={formatLabelY} />
 			<MultiLine />
 		</Svg>
 
-		<!-- <Html>
-			<Labels />
-			<SharedTooltip formatTitle={formatLabelX} dataset={data} />
-		</Html> -->
+		<Html>
+			<!-- <Labels /> -->
+			<SharedTooltip
+				formatTitle={formatLabelX}
+				formatKey={formatTooltipKey}
+				formatValue={formatTooltipValue}
+				dataset={data}
+			/>
+		</Html>
 	</LayerCake>
 </div>
 
