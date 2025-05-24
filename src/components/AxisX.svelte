@@ -81,7 +81,7 @@
 				<line
 					class="tick-mark"
 					x1={halfBand}
-					x2={halfBan % d}
+					x2={halfBand}
 					y1={tickGutter}
 					y2={tickGutter + tickLen}
 				/>

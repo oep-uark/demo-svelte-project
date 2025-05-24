@@ -30,8 +30,6 @@
 		school_year: ''
 	});
 
-	console.log(wide);
-
 	const stackedData = stack(wide, seriesNames);
 
 	const xKey = 'school_year';

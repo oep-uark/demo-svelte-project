@@ -6,6 +6,7 @@
 	import RetentionChangeChart from '$components/RetentionChangeChart.svelte';
 	import RetentionStackedBarChart from '$components/RetentionStackedBarChart.svelte';
 	import DistrictMap from '$components/DistrictMap.svelte';
+	import ExitersLineChart from '$components/ExitersLineChart.svelte';
 </script>
 
 <article class="mx-auto max-w-3xl px-4 py-12">
@@ -30,6 +31,7 @@
 			shortage areas. Middle school teachers notably show decreased retention rates across subject
 			areas.
 		</p>
+		<ExitersLineChart />
 		<h3 class="mb-2 text-xl font-bold text-gray-900">
 			To distinguish between different types of turnover, we use the following four terms:
 		</h3>

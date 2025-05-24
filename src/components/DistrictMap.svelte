@@ -55,16 +55,13 @@
 	// handle the interactivity
 	let selectedDistrict = $state(null);
 	function handleDistrictClick(districtData) {
-		console.log('CLICKED');
 		// merges on the actual data again since it's not available from the click event
 		selectedDistrict = {
 			...districtData,
 			...dataLookup.get(districtData[mapJoinKey])
 		};
 	}
-	$inspect(selectedDistrict).with((type, value) => {
-		console.log('selectedDistrict changed:', value);
-	});
+	$inspect(selectedDistrict).with((type, value) => {});
 </script>
 
 <div class="flex flex-col gap-4 md:flex-row">
