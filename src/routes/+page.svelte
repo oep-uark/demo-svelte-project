@@ -107,6 +107,12 @@
 		</p>
 	</section>
 	<section>
+		<h3 class="mb-2 text-xl font-bold text-gray-900">
+			The Rate of Switchers Continues to be Elevated Compared to Pre-pandemic Years
+		</h3>
+		<p class="mb-2">To do.</p>
+	</section>
+	<section>
 		<h3 class="mb-2 text-xl font-bold text-gray-900">Retention Patterns Vary Widely by District</h3>
 		<p class="mb-2 text-lg text-gray-700">
 			Retention rates in 2024–25 ranged from <b>55% to 95%</b> across districts.
