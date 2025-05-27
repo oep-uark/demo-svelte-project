@@ -32,6 +32,8 @@
 
 	export let selectedDistrict = null;
 
+	export let interactive = true;
+
 	/* --------------------------------------------
 	 * Here's how you would do cross-component hovers
 	 */
@@ -65,14 +67,14 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<path
-			class="feature-path"
+			class={`feature-path ${interactive ? 'interactive' : 'non-interactive'}`}
 			fill={fill || $zGet(feature.properties)}
 			{stroke}
 			stroke-width={strokeWidth}
 			d={geoPathFn(feature)}
-			on:mouseover={(e) => dispatch('mousemove', { e, props: feature.properties })}
-			on:mousemove={handleMousemove(feature)}
-			on:click={() => dispatch('click', feature.properties)}
+			on:mouseover={(e) => interactive && dispatch('mousemove', { e, props: feature.properties })}
+			on:mousemove={interactive ? handleMousemove(feature) : undefined}
+			on:click={() => interactive && dispatch('click', feature.properties)}
 			role="tooltip"
 		></path>
 	{/each}
@@ -86,6 +88,8 @@
 			stroke="#000"
 			stroke-width="2"
 			d={geoPathFn($data.features.find((f) => f.properties.lea === selectedDistrict.lea))}
+			aria-hidden={!interactive}
+			tabindex={interactive ? 0 : -1}
 		/>
 	</g>
 {/if}
@@ -95,7 +99,7 @@
       stroke: #333;
       stroke-width: 0.5px;
     } */
-	.feature-path:hover {
+	.feature-path.interactive:hover {
 		stroke: #000;
 		stroke-width: 2px;
 	}
@@ -129,5 +133,14 @@
 			stroke-width: 2;
 			opacity: 1;
 		}
+	}
+
+	/**
+	 * Disable hover for non-interactive cards
+	 */
+	/* When interactive mode is off, kill all hover effects */
+	.non-interactive {
+		pointer-events: none;
+		cursor: default;
 	}
 </style>

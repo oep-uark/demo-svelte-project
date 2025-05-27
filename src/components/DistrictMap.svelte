@@ -13,6 +13,9 @@
 	import districts from '../data/districts.json';
 	import flowData from '../data/district_flow_data.json';
 
+	// set up props
+	const { interactive = true, initialSelectedDistrictId = null } = $props();
+
 	const colorKey = 'retention_rate';
 
 	/* --------------------------------------------
@@ -53,7 +56,15 @@
 	const formatRoundPercent = format('.0%');
 
 	// handle the interactivity
-	let selectedDistrict = $state(null);
+	let selectedDistrict = $state(
+		initialSelectedDistrictId
+			? {
+					...geojson.features.find((f) => f.properties[mapJoinKey] === initialSelectedDistrictId)
+						?.properties,
+					...dataLookup.get(initialSelectedDistrictId)
+				}
+			: null
+	);
 	function handleDistrictClick(districtData) {
 		// merges on the actual data again since it's not available from the click event
 		selectedDistrict = {
@@ -61,7 +72,9 @@
 			...dataLookup.get(districtData[mapJoinKey])
 		};
 	}
-	$inspect(selectedDistrict).with((type, value) => {});
+	$inspect(selectedDistrict).with((type, value) => {
+		console.log('Selected district changed:', value);
+	});
 </script>
 
 <div class="flex flex-col gap-4 md:flex-row">
@@ -78,15 +91,22 @@
 				<MapInteractiveSvg
 					{projection}
 					{selectedDistrict}
+					{interactive}
 					stroke="#020617"
-					on:mousemove={(event) => (evt = hideTooltip = event)}
-					on:mouseout={() => (hideTooltip = true)}
-					on:click={(e) => handleDistrictClick(e.detail)}
+					on:mousemove={(event) => {
+						if (interactive) evt = hideTooltip = event;
+					}}
+					on:mouseout={() => {
+						if (interactive) hideTooltip = true;
+					}}
+					on:click={(e) => {
+						if (interactive) handleDistrictClick(e.detail);
+					}}
 				/>
 			</Svg>
 
 			<Html pointerEvents={false}>
-				{#if hideTooltip !== true}
+				{#if interactive && hideTooltip !== true}
 					<Tooltip {evt} let:detail>
 						<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
 						{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}

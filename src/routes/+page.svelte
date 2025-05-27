@@ -144,14 +144,16 @@
 		</p>
 		<ul class="mb-2 list-outside list-disc space-y-1 pl-6 text-lg text-gray-700">
 			<li>
-				In <b>Strong-Huttig,</b> 38% of the 2023-24 teachers are no longer in district classrooms. Of
-				those, 73% left the profession and 27% stayed in Arkansas public schools. Most weren’t looking
-				for a different teaching job—they left the Arkansas public education altogether.
+				In <b>Strong-Huttig,</b> 38% of the 2023-24 teachers are no longer in district classrooms.
+				Of those, 73% left the profession and 27% stayed in Arkansas public schools. Most weren’t
+				looking for a different teaching job—they left the Arkansas public education altogether.
+				<DistrictMap interactive={false} initialSelectedDistrictId={'7009000'} />
 			</li>
 			<li>
-				In <b>Hermitage,</b> where 35% of teachers were no longer teaching in the district, 55% of those
-				moved to teach in other districts, 18% switched roles, and only 27% left the profession. Most
-				teachers here stayed in education, just not in the same district.
+				In <b>Hermitage,</b> where 35% of teachers were no longer teaching in the district, 55% of
+				those moved to teach in other districts, 18% switched roles, and only 27% left the
+				profession. Most teachers here stayed in education, just not in the same district.
+				<DistrictMap interactive={false} initialSelectedDistrictId={'0601000'} />
 			</li>
 		</ul>
 		<p class="mb-2 text-lg text-gray-700">
