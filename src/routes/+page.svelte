@@ -12,12 +12,8 @@
 <article class="mx-auto max-w-3xl px-4 py-12">
 	<header class="pt-4 pb-6 text-center">
 		<h1 class="text-3xl font-bold text-gray-900">
-			2024–25 Arkansas Teacher Retention: Statewide Stability Amid Ongoing Local Challenges
+			2024–25 Arkansas Teacher Retention: <br /> Statewide Stability Amid Ongoing Local Challenges
 		</h1>
-		<p class="mt-2 text-base text-gray-600">
-			By the Office for Education Policy and the Arkansas Department of Education
-		</p>
-
 		<hr class="mt-6 border-t border-gray-300" />
 	</header>
 	<section>
@@ -89,11 +85,6 @@
 			year’s levels, and retention rates continue to be lower than in pre-pandemic times, suggesting
 			a potential plateau in recovery.
 		</p>
-
-		<p class="mt-6 mb-6 text-lg text-gray-700">
-			Middle school subjects have experienced the largest decline in retention:
-		</p>
-		<!-- <RetentionChangeChart /> -->
 	</section>
 	<section>
 		<h3 class="mb-2 text-xl font-bold text-gray-900">

@@ -110,7 +110,8 @@
 					<Tooltip {evt} let:detail>
 						<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
 						{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}
-						{@const districtName = tooltipData['District Name'].replace(' School District', '')}
+						{@const districtName = tooltipData['name'].replace(' School District', '')}
+						<!-- {@const districtName = tooltipData['District Name'].replace(' School District', '')} -->
 						<div>
 							{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from 2024
 							to 2025.
@@ -124,7 +125,8 @@
 	<div class="max-h-[400px] min-h-[240px] w-full rounded p-4 md:w-80">
 		{#if selectedDistrict}
 			<h2 class="text-lg font-semibold">
-				{selectedDistrict?.['District Name']?.replace(' School District', '')}
+				{selectedDistrict?.name}
+				<!-- {selectedDistrict?.['District Name']?.replace(' School District', '')} -->
 			</h2>
 			<p class="mt-2">
 				<strong>Teachers 2024:</strong>

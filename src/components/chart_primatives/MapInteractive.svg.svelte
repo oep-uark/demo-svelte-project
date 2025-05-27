@@ -89,7 +89,6 @@
 			stroke-width="2"
 			d={geoPathFn($data.features.find((f) => f.properties.lea === selectedDistrict.lea))}
 			aria-hidden={!interactive}
-			tabindex={interactive ? 0 : -1}
 		/>
 	</g>
 {/if}
