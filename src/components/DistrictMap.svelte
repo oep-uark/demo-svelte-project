@@ -133,7 +133,7 @@
 				{addCommas(selectedDistrict?.teachers_2024)}
 			</p>
 			<p><strong>Teachers 2025:</strong> {addCommas(selectedDistrict?.teachers_2025)}</p>
-			<p>
+			<!-- <p>
 				<strong>Net Change:</strong>
 				{#if selectedDistrict?.net_change > 0}
 					<span class="text-green-600">+{selectedDistrict.net_change}</span>
@@ -142,7 +142,7 @@
 				{:else}
 					<span class="text-gray-600">0</span>
 				{/if}
-			</p>
+			</p> -->
 
 			<p class="mt-2 text-sm leading-relaxed text-gray-800">
 				Out of <span class="font-semibold text-gray-900"
@@ -153,9 +153,9 @@
 				stayed for 2025, a retention rate of
 				<span class="font-semibold text-green-600"
 					>{formatPercent(selectedDistrict?.retention_rate)}</span
-				>. Of the remainder:
+				>. Of those that left:
 			</p>
-			<ul class="mt-2 mb-4 list-inside list-disc space-y-1 text-sm">
+			<ul class="mt-2 mb-2 list-inside list-disc space-y-1 text-sm">
 				<li class="font-semibold text-blue-600">
 					{addCommas(selectedDistrict?.movers_out)} ({formatRoundPercent(
 						+selectedDistrict?.movers_out / +selectedDistrict?.teachers_2024
@@ -174,6 +174,18 @@
 					)}) exited the teaching workforce
 				</li>
 			</ul>
+			<p class="mb-4 text-sm leading-relaxed text-gray-800">
+				With <span class="font-bold">{selectedDistrict.new_teachers}</span> new teachers, this makes
+				a net change of
+				{#if selectedDistrict?.net_change > 0}
+					<span class="font-bold text-green-600">+{selectedDistrict.net_change}</span>
+				{:else if selectedDistrict?.net_change < 0}
+					<span class="font-bold text-red-600">{selectedDistrict.net_change}</span>
+				{:else}
+					<span class="font-bold text-gray-600">0</span>
+				{/if}
+				teachers for the district.
+			</p>
 
 			<WaffleCircleChart
 				data={[
@@ -202,6 +214,6 @@
     */
 	.chart-container {
 		width: 100%;
-		height: 400px;
+		height: 425px;
 	}
 </style>
