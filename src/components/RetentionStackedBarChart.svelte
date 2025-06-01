@@ -41,14 +41,14 @@
 	const annotations = [
 		{
 			text: 'Before COVID',
-			dx: 10,
+			dx: 0,
 			dy: -590,
 			// dy: 12,
 			data: { school_year: '2016-17' }
 		},
 		{
 			text: 'After COVID',
-			dx: -15,
+			dx: 0,
 			dy: -590,
 			data: { school_year: '2022-23' }
 		}
