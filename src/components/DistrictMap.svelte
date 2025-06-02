@@ -129,7 +129,7 @@
 		</div>
 	</div>
 
-	<div class="max-h-[400px] min-h-[240px] w-full rounded p-4 md:w-80">
+	<div class="min-h-[240px] w-full rounded p-4 md:w-80">
 		{#if selectedDistrict}
 			<h2 class="text-lg font-semibold">
 				{selectedDistrict?.name}
