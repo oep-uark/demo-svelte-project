@@ -5,27 +5,24 @@
 	let { children } = $props();
 
 	onMount(() => {
-		const sendHeight = () => {
-			const height = document.documentElement.scrollHeight;
+		const sendHeight = (height) => {
 			if (window.parent !== window) {
 				parent.postMessage({ type: 'setHeight', height }, '*');
 			}
-			console.log(height);
+			console.log('Sent height:', height);
 		};
 
-		// send once on mount
-		sendHeight();
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				const height = entry.contentRect.height;
+				sendHeight(height);
+			}
+		});
 
-		// send again on resize
-		window.addEventListener('resize', sendHeight);
-
-		// watch for DOM changes too
-		const observer = new MutationObserver(sendHeight);
-		observer.observe(document.body, { childList: true, subtree: true });
+		resizeObserver.observe(document.body); // or document.querySelector('main')
 
 		return () => {
-			window.removeEventListener('resize', sendHeight);
-			observer.disconnect();
+			resizeObserver.disconnect();
 		};
 	});
 </script>
