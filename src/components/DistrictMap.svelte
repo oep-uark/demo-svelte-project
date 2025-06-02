@@ -73,7 +73,7 @@
 		};
 	}
 	$inspect(selectedDistrict).with((type, value) => {
-		console.log('Selected district changed:', value);
+		// console.log('Selected district changed:', value);
 	});
 </script>
 
