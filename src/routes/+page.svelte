@@ -198,12 +198,12 @@
 		<p class="mb-2 text-base text-gray-700">
 			Importantly, the state has not stood still. Arkansas has implemented several key policies to
 			support the educator workforce, including <a
-				href="https://dese-admin.ade.arkansas.gov/Files/24-25_Archive_Doc_for_Webpage_EEF.pdf"
+				href="https://edre.uark.edu/_resources/pdf/changes-in-teacher-salaries-under-the-arkansas-learns-act-research-brief_nov2_final_rb2023-02.pdf"
 				target="_blank"
 				rel="noopener"><b>significant salary increases under the LEARNS Act</b></a
 			>,
 			<a
-				href="https://dese-admin.ade.arkansas.gov/Files/24-25_Archive_Doc_for_Webpage_EEF.pdf"
+				href="https://oep.uark.edu/explaining-the-arkansas-merit-teacher-incentive-fund-program/"
 				target="_blank"
 				rel="noopener"><b>merit pay</b></a
 			>
@@ -214,7 +214,7 @@
 		<p class="mb-2 text-base text-gray-700">
 			But if we want to see continued progress, especially in the hardest-to-staff areas, more
 			targeted efforts may be needed. Strengthening support for early-career teachers, <a
-				href="https://dese-admin.ade.arkansas.gov/Files/24-25_Archive_Doc_for_Webpage_EEF.pdf"
+				href="https://edre.uark.edu/_resources/pdf/edrerb-2024-02.pdf"
 				target="_blank"
 				rel="noopener">improving working conditions</a
 			>, and addressing the specific needs of high-turnover districts could help move retention even
