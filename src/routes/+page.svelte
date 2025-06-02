@@ -111,11 +111,19 @@
 		<h3 class="mb-2 text-xl font-bold text-gray-900">
 			The Rate of Switchers Continues to be Elevated Compared to Pre-pandemic Years
 		</h3>
-		<p class="mb-2">
-			Unlike the retirement rate, the rate of switchers - teachers leaving the classroom for
-			non-instructional roles - is higher than historical trends.
+		<p class="mb-6 text-base text-gray-700">
+			Unlike the retirement rate, the rate of switchers remains elevated above pre-pandemic levels.
+			In 2024-25, <b>3.6%</b> of teachers left the classroom for positions such as principal or instructional
+			coach, up approximately one percentage point from the historical average.
 		</p>
 		<SwitchersLineChart />
+		<p class="mt-6 mb-2 text-base text-gray-700">
+			One likely reason this rate remains high is that many districts created new non-instructional
+			roles using Federal ESSER (Elementary and Secondary School Emergency Relief) funds. With the
+			January 2025 deadline for spending these funds now passed, next year’s data will provide an
+			important indicator of whether these non-instructional roles can be sustained without
+			additional federal support.
+		</p>
 	</section>
 	<section>
 		<h3 class="mb-2 text-xl font-bold text-gray-900">Retention Patterns Vary Widely by District</h3>
