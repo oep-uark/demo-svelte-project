@@ -7,6 +7,7 @@
 	import RetentionStackedBarChart from '$components/RetentionStackedBarChart.svelte';
 	import DistrictMap from '$components/DistrictMap.svelte';
 	import ExitersLineChart from '$components/ExitersLineChart.svelte';
+	import SwitchersLineChart from '$components/SwitchersLineChart.svelte';
 </script>
 
 <article class="w-full max-w-none space-y-8 px-0">
@@ -114,6 +115,7 @@
 			Unlike the retirement rate, the rate of switchers - teachers leaving the classroom for
 			non-instructional roles - is higher than historical trends.
 		</p>
+		<SwitchersLineChart />
 	</section>
 	<section>
 		<h3 class="mb-2 text-xl font-bold text-gray-900">Retention Patterns Vary Widely by District</h3>

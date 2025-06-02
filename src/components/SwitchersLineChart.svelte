@@ -13,7 +13,7 @@
 	import AxisY from '$components/AxisY.svelte';
 
 	// This example loads csv data as json using @rollup/plugin-dsv
-	import data from '../data/exit_retire_formatted.csv';
+	import data from '../data/switcher_formatted.csv';
 
 	/* --------------------------------------------
 	 * Set what is our x key to separate it from the other series
@@ -23,7 +23,7 @@
 	const zKey = 'exit_reason';
 
 	const seriesNames = Object.keys(data[0]).filter((d) => d !== xKey);
-	const seriesColors = ['#ca2b2d', '#d6a840'];
+	const seriesColors = ['#EDB4B5'];
 
 	/* --------------------------------------------
 	 * Cast values
@@ -36,11 +36,10 @@
 
 	const formatLabelX = (d) => d;
 	const formatTooltipKey = (d) => {
-		if (d === 'exit') return 'Exit rate';
-		if (d === 'retire') return 'Retirement rate';
+		if (d === 'switcher') return 'Switcher rate';
 		return d;
 	};
-	const formatTooltipValue = (d) => d + '%';
+	const formatTooltipValue = (d) => `${(+d).toFixed(1)}%`;
 	const formatLabelY = (d) => d + '%';
 
 	const groupedData = groupLonger(data, seriesNames, {
@@ -79,7 +78,7 @@
 			'2024-25'
 		]}
 		xDomainSort={false}
-		yDomain={[0, 8]}
+		yDomain={[0, 6]}
 		zScale={scaleOrdinal()}
 		zRange={seriesColors}
 		flatData={flatten(groupedData, 'values')}
