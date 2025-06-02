@@ -118,11 +118,11 @@
 		</p>
 		<SwitchersLineChart />
 		<p class="mt-6 mb-2 text-base text-gray-700">
-			One likely reason this rate remains high is that many districts created new non-instructional
-			roles using Federal ESSER (Elementary and Secondary School Emergency Relief) funds. With the
-			January 2025 deadline for spending these funds now passed, next year’s data will provide an
-			important indicator of whether these non-instructional roles can be sustained without
-			additional federal support.
+			One likely reason this rate remains high might be that many districts created new
+			non-instructional roles using Federal ESSER (Elementary and Secondary School Emergency Relief)
+			funds. With the January 2025 deadline for spending these funds now passed, next year’s data
+			will provide an important indicator of whether these non-instructional roles can be sustained
+			without additional federal support.
 		</p>
 	</section>
 	<section>
