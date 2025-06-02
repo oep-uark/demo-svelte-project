@@ -43,14 +43,15 @@
 			text: 'Before COVID',
 			dx: 0,
 			dy: -590,
-			// dy: 12,
-			data: { school_year: '2016-17' }
+			data: { school_year: '2017-18' },
+			align: 'left'
 		},
 		{
 			text: 'After COVID',
 			dx: 0,
 			dy: -590,
-			data: { school_year: '2022-23' }
+			data: { school_year: '2022-23' },
+			align: 'center'
 		}
 	];
 

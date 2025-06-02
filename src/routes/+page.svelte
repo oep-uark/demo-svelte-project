@@ -110,7 +110,10 @@
 		<h3 class="mb-2 text-xl font-bold text-gray-900">
 			The Rate of Switchers Continues to be Elevated Compared to Pre-pandemic Years
 		</h3>
-		<p class="mb-2">To do.</p>
+		<p class="mb-2">
+			Unlike the retirement rate, the rate of switchers - teachers leaving the classroom for
+			non-instructional roles - is higher than historical trends.
+		</p>
 	</section>
 	<section>
 		<h3 class="mb-2 text-xl font-bold text-gray-900">Retention Patterns Vary Widely by District</h3>

@@ -77,49 +77,56 @@
 	});
 </script>
 
-<div class="flex flex-col gap-4 md:flex-row">
-	<div class="chart-container flex-1">
-		<LayerCake
-			data={geojson}
-			z={(d) => dataLookup.get(d[mapJoinKey])[colorKey]}
-			zScale={scaleThreshold()}
-			zDomain={[0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}
-			zRange={['#FFDF43', '#84D24C', '#00B675', '#00908A', '#016587', '#2C376E', '#460049']}
-			{flatData}
-		>
-			<Svg>
-				<MapInteractiveSvg
-					{projection}
-					{selectedDistrict}
-					{interactive}
-					stroke="#020617"
-					on:mousemove={(event) => {
-						if (interactive) evt = hideTooltip = event;
-					}}
-					on:mouseout={() => {
-						if (interactive) hideTooltip = true;
-					}}
-					on:click={(e) => {
-						if (interactive) handleDistrictClick(e.detail);
-					}}
-				/>
-			</Svg>
+<div class="mx-4 flex flex-col gap-4 rounded-md border-4 p-4 md:flex-row">
+	<div class="flex flex-1 flex-col space-y-4">
+		<span class="text-lg font-bold">2024-25 Retention Rates by District</span>
 
-			<Html pointerEvents={false}>
-				{#if interactive && hideTooltip !== true}
-					<Tooltip {evt} let:detail>
-						<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
-						{@const tooltipData = { ...detail.props, ...dataLookup.get(detail.props[mapJoinKey]) }}
-						{@const districtName = tooltipData['name'].replace(' School District', '')}
-						<!-- {@const districtName = tooltipData['District Name'].replace(' School District', '')} -->
-						<div>
-							{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from 2024
-							to 2025.
-						</div>
-					</Tooltip>
-				{/if}
-			</Html>
-		</LayerCake>
+		<div class="chart-container">
+			<LayerCake
+				data={geojson}
+				z={(d) => dataLookup.get(d[mapJoinKey])[colorKey]}
+				zScale={scaleThreshold()}
+				zDomain={[0.65, 0.7, 0.75, 0.8, 0.85, 0.9]}
+				zRange={['#FFDF43', '#84D24C', '#00B675', '#00908A', '#016587', '#2C376E', '#460049']}
+				{flatData}
+			>
+				<Svg>
+					<MapInteractiveSvg
+						{projection}
+						{selectedDistrict}
+						{interactive}
+						stroke="#020617"
+						on:mousemove={(event) => {
+							if (interactive) evt = hideTooltip = event;
+						}}
+						on:mouseout={() => {
+							if (interactive) hideTooltip = true;
+						}}
+						on:click={(e) => {
+							if (interactive) handleDistrictClick(e.detail);
+						}}
+					/>
+				</Svg>
+
+				<Html pointerEvents={false}>
+					{#if interactive && hideTooltip !== true}
+						<Tooltip {evt} let:detail>
+							<!-- For the tooltip, do another data join because the hover event only has the data from the geography data -->
+							{@const tooltipData = {
+								...detail.props,
+								...dataLookup.get(detail.props[mapJoinKey])
+							}}
+							{@const districtName = tooltipData['name'].replace(' School District', '')}
+							<!-- {@const districtName = tooltipData['District Name'].replace(' School District', '')} -->
+							<div>
+								{districtName} retained {formatPercent(tooltipData.retention_rate)} of teachers from
+								2024 to 2025.
+							</div>
+						</Tooltip>
+					{/if}
+				</Html>
+			</LayerCake>
+		</div>
 	</div>
 
 	<div class="max-h-[400px] min-h-[240px] w-full rounded p-4 md:w-80">
@@ -174,7 +181,7 @@
 					)}) exited the teaching workforce
 				</li>
 			</ul>
-			<p class="mb-4 text-sm leading-relaxed text-gray-800">
+			<p class="mb-2 text-sm leading-relaxed text-gray-800">
 				With <span class="font-bold">{selectedDistrict.new_teachers}</span> new teachers, this makes
 				a net change of
 				{#if selectedDistrict?.net_change > 0}
@@ -185,6 +192,9 @@
 					<span class="font-bold text-gray-600">0</span>
 				{/if}
 				teachers for the district.
+			</p>
+			<p class="mb-4 text-sm leading-relaxed text-gray-800">
+				These dots represent the teachers following each pathway:
 			</p>
 
 			<WaffleCircleChart

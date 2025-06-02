@@ -6,7 +6,7 @@
 <script>
 	import { getContext } from 'svelte';
 
-	const { xGet, yGet, percentRange } = getContext('LayerCake');
+	const { xGet, yGet, percentRange, xScale } = getContext('LayerCake');
 
 	/** @type {Array} annotations - A list of annotation objects. */
 	export let annotations = [];
@@ -20,15 +20,25 @@
 	$: units = pr === true ? '%' : 'px';
 </script>
 
+<!-- 				transform: translate(${d.dx || 0}px, ${d.dy || 0}px);
+ -->
+
+<!-- + ${$xScale.bandwidth()}${units} / 2  -->
+
+<!-- 				left: {`calc(${$xGet(d)}${units} + ${d.dx || 0}px)`};
+ -->
+
 <div class="layercake-annotations">
 	{#each annotations as d, i}
 		<div
 			class="layercake-annotation"
 			data-id={i}
 			style="
-				left: {`calc(${$xGet(d)}${units} + ${d.dx || 0}px)`};
 				top: calc(100% + {d.dy || 0}px);
-				transform: translate(${d.dx || 0}px, ${d.dy || 0}px);
+				transform: translateX(-50%); /* center horizontally */
+				left: {d.align === 'center'
+				? `calc(${$xGet(d)}${units} + ${$xScale.bandwidth()}${units} / 2)`
+				: `${$xGet(d)}${units}`};
 			"
 		>
 			{getText(d)}
