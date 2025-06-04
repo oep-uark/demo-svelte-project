@@ -4,6 +4,7 @@
 	import { scalePoint, scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
 	import { timeParse, timeFormat } from 'd3-time-format';
 	import { format } from 'd3-format';
+	import { onMount } from 'svelte';
 
 	import MultiLine from '$components/chart_primatives/MultiLine.svelte';
 	import SharedTooltip from '$components/chart_primatives/SharedTooltip.html.svelte';
@@ -34,7 +35,18 @@
 		});
 	});
 
-	const formatLabelX = (d) => d;
+	$: formatLabelX = (d) => {
+		if (d != '' && isSmallScreen) {
+			const [start, end] = d.split('-');
+			return `'${end}`;
+		}
+		if (d != '' && isMedScreen) {
+			const [start, end] = d.split('-');
+			return `${start.slice(2)}-${end}`;
+		}
+		return d;
+	};
+	const formatTooltipTitle = (d) => d;
 	const formatTooltipKey = (d) => {
 		if (d === 'exit') return 'Exit rate';
 		if (d === 'retire') return 'Retirement rate';
@@ -56,6 +68,21 @@
 		// 	dx: 30
 		// }
 	];
+
+	// handle small screen
+	let isSmallScreen = false;
+	let isMedScreen = false;
+
+	const updateScreenSize = () => {
+		isSmallScreen = window.innerWidth < 640;
+		isMedScreen = window.innerWidth >= 640 && window.innerWidth < 768;
+	};
+
+	onMount(() => {
+		updateScreenSize();
+		window.addEventListener('resize', updateScreenSize);
+		return () => window.removeEventListener('resize', updateScreenSize);
+	});
 </script>
 
 <div class="chart-container">
@@ -66,7 +93,7 @@
 		z={zKey}
 		xScale={scalePoint().padding(0.5)}
 		xDomain={[
-			'2014-15',
+			// '2014-15',
 			'2015-16',
 			'2016-17',
 			'2017-18',
@@ -86,7 +113,7 @@
 		data={groupedData}
 	>
 		<Svg>
-			<AxisX gridlines={false} tickMarks />
+			<AxisX gridlines={false} tickMarks format={formatLabelX} />
 			<AxisY ticks={4} format={formatLabelY} />
 			<MultiLine />
 		</Svg>
@@ -95,7 +122,7 @@
 			<!-- <Labels /> -->
 			<Annotations {annotations} />
 			<SharedTooltip
-				formatTitle={formatLabelX}
+				formatTitle={formatTooltipTitle}
 				formatKey={formatTooltipKey}
 				formatValue={formatTooltipValue}
 				dataset={data}

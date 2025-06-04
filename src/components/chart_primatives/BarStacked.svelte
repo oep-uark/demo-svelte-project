@@ -7,6 +7,7 @@
 <script>
 	import { getContext, createEventDispatcher } from 'svelte';
 	import { format } from 'd3';
+	import { onMount } from 'svelte';
 
 	const { data, xGet, yGet, zGet, xScale } = getContext('LayerCake');
 
@@ -22,6 +23,21 @@
 			}
 		};
 	}
+
+	// handle small screen
+	let isSmallScreen = false;
+	let isMedScreen = false;
+
+	const updateScreenSize = () => {
+		isSmallScreen = window.innerWidth < 640;
+		isMedScreen = window.innerWidth >= 640 && window.innerWidth < 768;
+	};
+
+	onMount(() => {
+		updateScreenSize();
+		window.addEventListener('resize', updateScreenSize);
+		return () => window.removeEventListener('resize', updateScreenSize);
+	});
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -52,18 +68,33 @@
 					role="tooltip"
 				></rect>
 
-				<text
-					x={$xGet(d) + $xScale.bandwidth() / 2}
-					y={($yGet(d)[0] + $yGet(d)[1]) / 2}
-					text-anchor="middle"
-					dominant-baseline="middle"
-					font-size="14"
-					font-weight="bold"
-					fill="white"
-					style="pointer-events: none"
-				>
-					{format('.1f')(d.data[series.key])}%
-				</text>
+				{#if isSmallScreen}
+					<text></text>
+				{:else if isMedScreen}
+					<text
+						x={$xGet(d) + $xScale.bandwidth() / 2}
+						y={($yGet(d)[0] + $yGet(d)[1]) / 2}
+						text-anchor="middle"
+						dominant-baseline="middle"
+						font-size="14"
+						fill="white"
+						style="pointer-events: none"
+					>
+						{format('.0f')(d.data[series.key])}%
+					</text>
+				{:else}
+					<text
+						x={$xGet(d) + $xScale.bandwidth() / 2}
+						y={($yGet(d)[0] + $yGet(d)[1]) / 2}
+						text-anchor="middle"
+						dominant-baseline="middle"
+						font-size="14"
+						fill="white"
+						style="pointer-events: none"
+					>
+						{format('.1f')(d.data[series.key])}%
+					</text>
+				{/if}
 			{/if}
 		{/each}
 	{/each}

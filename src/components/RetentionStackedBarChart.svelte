@@ -3,6 +3,7 @@
 
 	import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
 	import { format } from 'd3-format';
+	import { onMount } from 'svelte';
 
 	import AxisX from '$components/AxisX.svelte';
 	import AxisY from '$components/AxisY.svelte';
@@ -36,6 +37,17 @@
 	const yKey = [0, 1];
 	const zKey = 'key';
 
+	$: formatLabelX = (d) => {
+		if (d != '' && isSmallScreen) {
+			const [start, end] = d.split('-');
+			return `'${end}`;
+		}
+		if (d != '' && isMedScreen) {
+			const [start, end] = d.split('-');
+			return `${start.slice(2)}-${end}`;
+		}
+		return d;
+	};
 	const formatLabelY = (d) => d + '%';
 
 	const annotations = [
@@ -44,7 +56,7 @@
 			dx: 0,
 			dy: -660,
 			data: { school_year: '2017-18' },
-			align: 'left'
+			align: 'center'
 		},
 		{
 			text: 'After COVID',
@@ -57,6 +69,21 @@
 
 	let evt;
 	let hideTooltip = false;
+
+	// handle small screen
+	let isSmallScreen = false;
+	let isMedScreen = false;
+
+	const updateScreenSize = () => {
+		isSmallScreen = window.innerWidth < 640;
+		isMedScreen = window.innerWidth >= 640 && window.innerWidth < 768;
+	};
+
+	onMount(() => {
+		updateScreenSize();
+		window.addEventListener('resize', updateScreenSize);
+		return () => window.removeEventListener('resize', updateScreenSize);
+	});
 </script>
 
 <div class="chart-container">
@@ -67,7 +94,7 @@
 		z={zKey}
 		xScale={scaleBand().paddingInner(0.05).round(true)}
 		xDomain={[
-			'2014-15',
+			// '2014-15',
 			'2015-16',
 			'2016-17',
 			'2017-18',
@@ -89,7 +116,7 @@
 		data={stackedData}
 	>
 		<Svg>
-			<AxisX gridlines={false} />
+			<AxisX gridlines={false} format={formatLabelX} />
 			<AxisY gridlines={true} format={formatLabelY} />
 			<BarStacked
 				on:mousemove={(event) => (evt = hideTooltip = event)}

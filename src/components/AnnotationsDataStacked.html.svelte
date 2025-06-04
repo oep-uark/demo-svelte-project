@@ -49,5 +49,6 @@
 <style>
 	.layercake-annotation {
 		position: absolute;
+		white-space: nowrap !important;
 	}
 </style>

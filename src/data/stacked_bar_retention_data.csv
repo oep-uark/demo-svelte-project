@@ -1,5 +1,4 @@
 school_year,period,variable,value,tooltip,label
-2014-15,Before COVID,Stayer,0.796555569,79.7% teach in same school.,79.70%
 2015-16,Before COVID,Stayer,0.788699738,78.9% teach in same school.,78.90%
 2016-17,Before COVID,Stayer,0.78217518,78.2% teach in same school.,78.20%
 2017-18,Before COVID,Stayer,0.792120446,79.2% teach in same school.,79.20%
@@ -10,8 +9,6 @@ school_year,period,variable,value,tooltip,label
 2022-23,Since COVID,Stayer,0.748949987,74.9% teach in same school.,74.90%
 2023-24,Since COVID,Stayer,0.766965544,76.7% teach in same school.,76.70%
 2024-25,Since COVID,Stayer,0.769933327,77.0% teach in same school.,77.00%
-2014-15,Before COVID,Exiter,0.080937926,"4.6% exit the Arkansas education workforce. 
- 3.5% retire from the Arkansas education workforce.",8.10%
 2015-16,Before COVID,Exiter,0.08771127,"5.6% exit the Arkansas education workforce. 
  3.2% retire from the Arkansas education workforce.",8.80%
 2016-17,Before COVID,Exiter,0.085381193,"5.6% exit the Arkansas education workforce. 
@@ -32,8 +29,6 @@ school_year,period,variable,value,tooltip,label
  2.4% retire from the Arkansas education workforce.",8.80%
 2024-25,Since COVID,Exiter,0.0923372,"6.5% exit the Arkansas education workforce. 
  2.8% retire from the Arkansas education workforce.",9.20%
-2014-15,Before COVID,Mover,0.094659893,"5.2% move schools within district. 
- 4.3% move schools between districts.",9.50%
 2015-16,Before COVID,Mover,0.101836598,"6.0% move schools within district. 
  4.2% move schools between districts.",10.20%
 2016-17,Before COVID,Mover,0.105169505,"5.7% move schools within district. 
@@ -54,8 +49,6 @@ school_year,period,variable,value,tooltip,label
  5.7% move schools between districts.",10.80%
 2024-25,Since COVID,Mover,0.101348677,"4.7% move schools within district. 
  5.4% move schools between districts.",10.10%
-2014-15,Before COVID,Switcher,0.027846611,"2.4% switch roles within district. 
- 0.4% switch roles between districts.",2.80%
 2015-16,Before COVID,Switcher,0.021752395,"1.8% switch roles within district. 
  0.4% switch roles between districts.",2.20%
 2016-17,Before COVID,Switcher,0.027274122,"2.3% switch roles within district. 

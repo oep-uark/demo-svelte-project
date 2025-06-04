@@ -26,6 +26,7 @@
 			data-id={i}
 			style:left={`calc(${$xGet(d)}${units} + ${d.dx || 0}px)`}
 			style:top={`calc(${$yGet(d)}${units} + ${d.dy || 0}px)`}
+			style="white-space: nowrap"
 		>
 			{getText(d)}
 		</div>
@@ -35,5 +36,6 @@
 <style>
 	.layercake-annotation {
 		position: absolute;
+		white-space: nowrap !important;
 	}
 </style>

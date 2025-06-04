@@ -88,7 +88,7 @@
 			year’s levels, and retention rates continue to be lower than in pre-pandemic times, suggesting
 			a potential plateau in recovery.
 		</p>
-		<div class="px-32">
+		<div class="px-18 sm:px-28">
 			<RetentionStackedBarChart />
 		</div>
 	</section>
