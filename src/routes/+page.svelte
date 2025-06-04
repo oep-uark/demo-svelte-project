@@ -66,7 +66,7 @@
 		</p>
 		<ul class="mb-2 list-outside list-disc space-y-1 pl-6 text-base text-gray-700">
 			<li>
-				<span class="font-bold text-[#002F70]">77.7%</span>
+				<span class="font-bold text-[#002F70]">77.0%</span>
 				of teachers were Stayers;
 			</li>
 			<li>
