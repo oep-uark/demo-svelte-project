@@ -61,7 +61,7 @@
 			</li>
 		</ul>
 		<p class="mb-2 text-base text-gray-700">
-			The chart below shows teachers employment decisions using these categories for the 2014-15
+			The chart below shows teachers employment decisions using these categories for the 2015-16
 			school year through the 2024-25 school year. In 2024-25:
 		</p>
 		<ul class="mb-2 list-outside list-disc space-y-1 pl-6 text-base text-gray-700">
@@ -88,7 +88,7 @@
 			year’s levels, and retention rates continue to be lower than in pre-pandemic times, suggesting
 			a potential plateau in recovery.
 		</p>
-		<div class="px-18 sm:px-28">
+		<div class="px-16 sm:px-28">
 			<RetentionStackedBarChart />
 		</div>
 	</section>
@@ -104,8 +104,8 @@
 			careers or spend time with family.
 		</p>
 		<p class="mb-6 text-base text-gray-700">
-			The retirement rate aligns with historical norms. Between 2014–15 and 2019–20, retirements
-			averaged <b>2.9%</b> annually. In other words, the uptick in exits we've observed since the pandemic
+			The retirement rate aligns with historical norms. Between 2015–16 and 2019–20, retirements
+			averaged <b>2.8%</b> annually. In other words, the uptick in exits we've observed since the pandemic
 			is not driven by a wave of retirements, but by early- and mid-career teachers leaving the profession.
 		</p>
 		<ExitersLineChart />

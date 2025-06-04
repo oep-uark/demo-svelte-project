@@ -50,16 +50,16 @@
 	};
 	const formatLabelY = (d) => d + '%';
 
-	const annotations = [
+	$: annotations = [
 		{
-			text: 'Before COVID',
+			text: isSmallScreen ? 'Before' : 'Before COVID',
 			dx: 0,
 			dy: -660,
 			data: { school_year: '2017-18' },
 			align: 'center'
 		},
 		{
-			text: 'After COVID',
+			text: isSmallScreen ? 'After' : 'After COVID',
 			dx: 0,
 			dy: -660,
 			data: { school_year: '2022-23' },
