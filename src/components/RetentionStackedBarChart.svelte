@@ -42,14 +42,14 @@
 		{
 			text: 'Before COVID',
 			dx: 0,
-			dy: -590,
+			dy: -660,
 			data: { school_year: '2017-18' },
 			align: 'left'
 		},
 		{
 			text: 'After COVID',
 			dx: 0,
-			dy: -590,
+			dy: -660,
 			data: { school_year: '2022-23' },
 			align: 'center'
 		}
@@ -147,6 +147,6 @@
     */
 	.chart-container {
 		width: 100%;
-		height: 600px;
+		height: 675px;
 	}
 </style>

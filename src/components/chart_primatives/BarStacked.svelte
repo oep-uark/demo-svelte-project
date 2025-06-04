@@ -57,7 +57,8 @@
 					y={($yGet(d)[0] + $yGet(d)[1]) / 2}
 					text-anchor="middle"
 					dominant-baseline="middle"
-					font-size="10"
+					font-size="14"
+					font-weight="bold"
 					fill="white"
 					style="pointer-events: none"
 				>
