@@ -9,7 +9,7 @@
 			if (window.parent !== window) {
 				parent.postMessage({ type: 'setHeight', height }, '*');
 			}
-			console.log('Sent height:', height);
+			// console.log('Sent height:', height);
 		};
 
 		const resizeObserver = new ResizeObserver((entries) => {
