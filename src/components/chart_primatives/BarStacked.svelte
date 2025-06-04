@@ -68,7 +68,7 @@
 					role="tooltip"
 				></rect>
 
-				{#if isSmallScreen}
+				{#if isSmallScreen || columnHeight <= 20}
 					<text></text>
 				{:else if isMedScreen}
 					<text

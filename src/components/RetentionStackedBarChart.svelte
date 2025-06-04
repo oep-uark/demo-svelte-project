@@ -54,14 +54,14 @@
 		{
 			text: isSmallScreen ? 'Before' : 'Before COVID',
 			dx: 0,
-			dy: -660,
+			dy: -385,
 			data: { school_year: '2017-18' },
 			align: 'center'
 		},
 		{
 			text: isSmallScreen ? 'After' : 'After COVID',
 			dx: 0,
-			dy: -660,
+			dy: -385,
 			data: { school_year: '2022-23' },
 			align: 'center'
 		}
@@ -174,6 +174,6 @@
     */
 	.chart-container {
 		width: 100%;
-		height: 675px;
+		height: 400px;
 	}
 </style>
